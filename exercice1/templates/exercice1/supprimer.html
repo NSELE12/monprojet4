@@ -1,0 +1,23 @@
+{% extends "exercice1/base.html" %}
+{% load static %}
+{% block head %}{% endblock head %}
+{% block style %}
+    <style>
+        .gg{
+            background-image: url('{% static "./img/hero-2.jpg" %}');
+        }
+    </style>
+
+    {% endblock style %}
+    {% block body %}
+    {% include "exercice1/index.html" %}	
+
+    <p>Voulez vous vraiment supprimer la reservation "{{ reserva.nom  }}" ??</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit"> Supprimer</button>
+    </form>
+{% include "exercice1/footer.html" %}	
+
+    {% endblock body %}
+{% block script %}{% endblock script %}

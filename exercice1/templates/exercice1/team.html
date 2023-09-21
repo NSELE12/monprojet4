@@ -1,0 +1,76 @@
+{% extends "exercice1/base.html" %}
+{% load static %}
+{% block head %}{% endblock head %}
+{% block style %}
+  
+
+    {% endblock style %}
+
+
+{% block body %}
+{% include "exercice1/header.html" %}	
+
+    
+    <a href="{% url 'reservation' %}">Retour</a>
+
+<form action="{% url 'rechercher' %}" method="GET">
+    <input type="text" name="search_query" placeholder="Rechercher une reservation" value="{{ search_query }}">
+    <input type="submit" value="Rechercher">
+</form>
+
+    <table class="table table-striped table-bordered">
+       <thead>
+            <tr>
+                <td>NOM </td>
+                <td>EMAIL</td>
+                <td>TELEPHONE </td>
+                <td>DATE </td>
+                <td> HEURE</td>
+                <td>NOMBRE </td>
+                <td>MESSAGE </td>
+                <td>ACTION </td>
+            </tr>
+        </thead>
+        <tbody>
+           {% for recuperation in recuperation %} 
+            <tr>
+                <td>{{ recuperation.nom}} </td>
+                <td>{{ recuperation.email}} </td>
+                <td>{{ recuperation.telephone}} </td>
+                <td>{{ recuperation.date}} </td>
+                <td>{{ recuperation.heure}} </td>
+                <td>{{ recuperation.nombre}} </td>
+                <td>{{ recuperation.message}} </td>
+                <td>
+                    <a href="{% url 'supprimer' recuperation.id %}" class="btn btn-danger">Supprimer</a>
+                    <a href="{% url 'modifier' recuperation.id %}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+
+        <tbody>
+            {% for rechercher in rechercher %} 
+             <tr>
+                 <td>{{ rechercher.nom}} </td>
+                 <td>{{ rechercher.email}} </td>
+                 <td>{{ rechercher.telephone}} </td>
+                 <td>{{ rechercher.date}} </td>
+                 <td>{{ rechercher.heure}} </td>
+                 <td>{{ rechercher.nombre}} </td>
+                 <td>{{ rechercher.message}} </td>
+             </tr>
+             
+             {% endfor %}
+         </tbody>
+        
+    </table>
+    {% include "exercice1/footer.html" %}	
+
+{% endblock body%}
+
+{% block script %}
+
+{% endblock script %}
+ 
